@@ -1,0 +1,28 @@
+{
+    "name": "slack-email-webhook",
+    "version": "0.1.0",
+    "description": "Get notifications in Slack for received and sent mail.",
+    "author": "Nick Schwarzenberg <nick@bitfasching.de>",
+    "license": "AGPLv3",
+    "scripts": {
+        "start": "node slack-email-webhook.js"
+    },
+    "main": "./slack-email-webhook.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bitfasching/slack-email-webhook"
+    },
+    "keywords": [
+        "slack", "imap", "email", "webhook", "notification"
+    ],
+    "engines": {
+        "node": ">=7.6"
+    },
+    "dependencies": {
+        "timestamped-console": "~0.1.0",
+        "emailjs-imap-client": "~2.0.5",
+        "envelope": "~1.0.6"
+    },
+    "preferGlobal": false,
+    "private": false
+}
