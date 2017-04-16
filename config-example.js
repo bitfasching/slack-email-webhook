@@ -42,7 +42,7 @@ module.exports = {
     // https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
     webhookURL: "https://hooks.slack.com/services/…",
 
-    // show CC and BCC addresses in Slack notifications?
-    // (
+    // show Cc: and Bcc: addresses in Slack notifications?
+    // (listed for sent mails together with receivers in To: field)
     showCopy: true,
 }

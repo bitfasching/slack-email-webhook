@@ -11,7 +11,7 @@ Written in ES2015 with [async](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ## Getting Started
 
-This is how to set up your Slack Email Webhook in 5 minutes.
+How to set up your Slack Email Webhook in 5 minutes.
 You'll need:
 
 - an email account with IMAP access
@@ -106,7 +106,7 @@ $ kill -INT 25978
 ```
 
 
-## Reference
+## Details
 
 ### Configuration File
 
@@ -129,12 +129,17 @@ Slack Email Webhook…
 - ignores any input via `stdin`
 - writes informational messages to `stdout`
 - writes error messages to `stderr`
-- logs out and exits gracefully on `SIGINT` signal
+- logs out and exits gracefully on SIGINT signal
 - does not return any special exit codes
 
-### Slack Interface
+### Slack Notifications
 
-
+Notifications sent to Slack are sent as [message attachments](https://api.slack.com/docs/message-attachments).
+If the address in the `From:` header matches your account's username, the notification will present the email as outgoing, otherwise as incoming.
+Outgoing mail is announced with “Sent mail to …” and a “good” (green) color code.
+Incoming mail is announced with “Received mail from …” and a “warning” (orange) color code.
+Attachments for incoming mail show the sender's display name and address as author.
+The attachment's title and timestamp contain the mail's subject and date, respectively.
 
 
 ## Examples
