@@ -1,7 +1,7 @@
 {
     "name": "slack-email-webhook",
     "version": "0.1.0",
-    "description": "Get notifications in Slack for received and sent mail.",
+    "description": "A lightweight service to get notifications on Slack for received and sent mail.",
     "author": "Nick Schwarzenberg <nick@bitfasching.de>",
     "license": "AGPLv3",
     "scripts": {

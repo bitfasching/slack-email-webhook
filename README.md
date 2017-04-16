@@ -53,7 +53,7 @@ The following settings need to be specified before the first run:
 
 ### Quick Run
 
-After configuring the email credentials and the webhook URL, you're ready to start the service:
+After configuring the credentials and the webhook URL, you're ready to start the service:
 
 ```
 $ npm start
@@ -116,7 +116,7 @@ The configuration file is executed and imported as a module using node's `requir
 
 ### Environment Variables
 
-Slack Email Webhook checks two environment variables during start:
+Two environment variables are considered during start:
 
 - `CONFIG`: Absolute or relative path to the configuration file. Defaults to “./config.js”.
 - `MAILBOX`: Name of the mailbox to watch. Overrides the “mailbox” property in the configuration file, if set.
@@ -131,6 +131,52 @@ Slack Email Webhook…
 - writes error messages to `stderr`
 - logs out and exits gracefully on `SIGINT` signal
 - does not return any special exit codes
+
+### Slack Interface
+
+
+
+
+## Examples
+
+### Exploring Available Mailboxes
+
+Usually an IMAP account comprises several mailboxes (folders).
+The mailbox for incoming mail is commonly called “INBOX”, which is the default mailbox monitored by Slack Email Webhook.
+To watch another mailbox, e.g. for sent mail, either specify its name in `config.js` or pass it as environment variable `MAILBOX` when starting the service.
+
+Mailbox names are not standardized.
+It's common to store sent mails in “Sent” for example, but this name may vary from client to client, especially in non-English language environments.
+Slack Email Webhook retrieves a list of existing mailboxes from the server and checks if the mailbox you wanted is available.
+In case it's not, the list is shown in the log.
+You may use this to explore the available mailboxes in your account:
+
+```
+$ MAILBOX=? node slack-email-webhook.js
+2017-04-16 16:48 Connecting to posteo.de:993…
+2017-04-16 16:48 Wanted mailbox "?" is not available.
+2017-04-16 16:48 Available mailboxes: "Drafts", "Trash", "Sent", "Notes", "INBOX"
+2017-04-16 16:48 Exiting…
+```
+
+### Two Instances for Received & Sent Mail
+
+You can run multiple instances of Slack Email Webhook if you want to monitor multiple mailboxes.
+A common use case would be to forward not only received, but also sent mail to Slack.
+
+This is how you could spawn two Slack Email Webhook instances using [pm2](https://www.npmjs.com/package/pm2) to watch the mailboxes “INBOX” and “Sent” as specified by the environment variable `MAILBOX`:
+
+```
+$ MAILBOX=INBOX pm2 start slack-email-webhook.js --name="Mail to Slack: INBOX" --log=inbox.log
+$ MAILBOX=Sent  pm2 start slack-email-webhook.js --name="Mail to Slack: Sent"  --log=sent.log
+$ pm2 list
+┌───────────────────────┬──────┬────────┬───┬─────┬───────────┐
+│ Name                  │ mode │ status │ ↺ │ cpu │ memory    │
+├───────────────────────┼──────┼────────┼───┼─────┼───────────┤
+│ Mail to Slack: INBOX  │ fork │ online │ 0 │ 0%  │ 28.5 MB   │
+│ Mail to Slack: Sent   │ fork │ online │ 0 │ 0%  │ 28.4 MB   │
+└───────────────────────┴──────┴────────┴───┴─────┴───────────┘
+```
 
 
 ## License
