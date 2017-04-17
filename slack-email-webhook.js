@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Slack Email Webhook
  *
@@ -6,7 +8,7 @@
  *
  * Nick Schwarzenberg
  * nick@bitfasching.de
- * v0.1.1, 04/2017
+ * v0.1.2, 04/2017
  *
  * License: AGPLv3
  */
