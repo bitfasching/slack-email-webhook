@@ -30,28 +30,30 @@ Select a channel where you'd like to receive notifications and click “Add Inco
 You'll be redirected to the configuration page of your new webhook.
 
 Scroll down to “Integration Settings”.
-Under “Post to Channel”, select where you'd like to receive notifications.
 Note the field “Webhook URL” which you'll need in a minute.
 You may customize the integration by naming it and setting its icon to a Slack emoji of your taste.
 
 ### Installing & Configuration
 
-To install the [package](https://www.npmjs.com/package/slack-email-webhook) and its dependencies on your machine, change to a new directory and run [npm](https://docs.npmjs.com/):
+On your machine, run [npm](https://docs.npmjs.com/) to get the [package](https://www.npmjs.com/package/slack-email-webhook) and its dependencies:
 
 ```
 $ npm install slack-email-webhook
 ```
 
-You'll find a file called [`config-example.js`](config-example.js) which contains an annotated example configuration.
+This will install a copy to your current directory under `node_modules/slack-email-webhook`.
+Use `npm install --global` to make it available as sytem-wide command.
+
+The file [`config-example.js`](config-example.js) contains an annotated example configuration.
 Create a copy and name it `config.js`, then open it in a text editor.
-The following settings need to be specified before the first run:
+The following settings need to be adjusted before the first run:
 
 - *username* – IMAP username, usually your email address
 - *password* – password to log into your email account
 - *host* – your provider's IMAP server name (if in doubt, [search](https://duckduckgo.com/?q=imap+settings+yourproviderhere) for it)
 - *webhookURL* – the URL of your new integration on Slack
 
-### Quick Run
+### Quick Start
 
 After configuring the credentials and the webhook URL, you're ready to start the service:
 
