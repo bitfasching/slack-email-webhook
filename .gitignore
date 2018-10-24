@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/node,osx
 
 ### Node ###
@@ -65,3 +64,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+config.js
